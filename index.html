@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Radiant Pet Memorial – Honor Their Memory with Love</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ===== RESET ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Jost', Arial, sans-serif;
+      font-weight: 300;
+      color: #3a2e28;
+      background: #fff;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+
+    /* ===== NAV ===== */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(250,245,238,0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(58,46,40,0.1);
+      height: 64px;
+      display: flex;
+      align-items: center;
+    }
+    .nav-inner {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 40px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.15rem;
+      color: #3a2e28;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      cursor: pointer;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 36px;
+    }
+    .nav-links a {
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #5a4a44;
+      transition: color 0.2s;
+      position: relative;
+      padding-bottom: 3px;
+      cursor: pointer;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 1px;
+      background: #c4928a;
+      transform: scaleX(0);
+      transition: transform 0.25s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: #3a2e28; }
+    .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    .nav-toggle span { display: block; width: 24px; height: 1.5px; background: #3a2e28; }
+
+    /* ===== PAGE WRAPPER ===== */
+    .site { padding-top: 64px; }
+
+    /* ===== PAGE SECTIONS ===== */
+    .page-section { display: none; }
+    .page-section.active { display: block; }
+
+    /* ===== SECTION SHARED ===== */
+    .sec-tan    { background: #d4c0a0; }
+    .sec-white  { background: #ffffff; }
+    .sec-cream  { background: #f5eee6; }
+    .sec-taupe  { background: #e5ddd4; }
+    .sec-sage   { background: #a8b49a; }
+
+    .sec-inner {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 80px 40px;
+    }
+    .sec-inner-sm {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 80px 40px;
+    }
+
+    /* ===== TYPOGRAPHY ===== */
+    .display {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      line-height: 1.05;
+      color: #3a2e28;
+    }
+    .display.muted { color: #7a6258; }
+
+    .heading {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      color: #3a2e28;
+      margin-bottom: 1.2rem;
+    }
+    .heading.center { text-align: center; }
+
+    body p { line-height: 1.85; font-size: 0.97rem; }
+
+    /* ===== BUTTONS ===== */
+    .btn-sage {
+      display: inline-block;
+      padding: 10px 28px;
+      background: #8a9e82;
+      color: #fff;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      border-radius: 50px;
+      transition: background 0.2s;
+      margin-top: 1.4rem;
+      cursor: pointer;
+    }
+    .btn-sage:hover { background: #728670; }
+
+    .btn-outline-dark {
+      display: inline-block;
+      padding: 10px 28px;
+      background: transparent;
+      color: #3a2e28;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+      border-radius: 50px;
+      border: 1.5px solid #3a2e28;
+      transition: all 0.2s;
+      margin-top: 1.4rem;
+      cursor: pointer;
+    }
+    .btn-outline-dark:hover { background: #3a2e28; color: #fff; }
+
+    .btn-newsletter {
+      display: inline-block;
+      padding: 10px 26px;
+      background: #8a9e82;
+      color: #fff;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.82rem;
+      border-radius: 50px;
+      margin-top: 1.2rem;
+      transition: background 0.2s;
+      cursor: pointer;
+    }
+    .btn-newsletter:hover { background: #728670; }
+
+    /* ===== HERO ===== */
+    .hero { width: 100%; line-height: 0; }
+    .hero img { width: 100%; height: auto; display: block; }
+
+    /* ===== WELCOME ===== */
+    .welcome-text { text-align: center; }
+    .welcome-text .display { margin-bottom: 1.8rem; }
+    .welcome-text p { max-width: 780px; margin: 0 auto 1rem; color: #3a2e28; }
+
+    .mission-vision {
+      display: grid;
+      grid-template-columns: 1fr 1px 1fr;
+      gap: 40px;
+      margin-top: 3.5rem;
+      text-align: left;
+    }
+    .mv-divider { background: rgba(58,46,40,0.2); }
+    .mv-col h3 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.55rem;
+      font-weight: 400;
+      color: #3a2e28;
+      border-bottom: 1px solid rgba(58,46,40,0.2);
+      padding-bottom: 0.5rem;
+      margin-bottom: 0.9rem;
+    }
+    .mv-col p { font-size: 0.9rem; color: #3a2e28; margin: 0; }
+
+    /* ===== ABOUT HERO BANNER ===== */
+    .about-hero {
+      background: #f5eee6;
+      padding: 80px 40px 60px;
+      text-align: center;
+      border-bottom: 3px solid #d4c0a0;
+    }
+    .about-hero h1 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(3rem, 6vw, 5rem);
+      font-weight: 400;
+      color: #3a2e28;
+      margin-bottom: 0.6rem;
+    }
+    .about-hero p {
+      font-size: 1rem;
+      color: #7a6258;
+      letter-spacing: 0.04em;
+    }
+
+    /* ===== PRODUCTS ===== */
+    .products-intro { text-align: center; max-width: 780px; margin: 0 auto 3rem; }
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 36px;
+    }
+    .product-card { display: flex; flex-direction: column; align-items: center; }
+    .product-card img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 6px 28px rgba(58,46,40,0.12);
+      margin-bottom: 14px;
+    }
+    .product-label {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.15rem;
+      text-align: center;
+      color: #3a2e28;
+    }
+
+    /* ===== BLOG ===== */
+    .blog-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 540px;
+    }
+    .blog-img-col { overflow: hidden; }
+    .blog-img-col img { width: 100%; height: 100%; object-fit: cover; }
+    .blog-text-col {
+      padding: 72px 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .blog-text-col .display { margin-bottom: 1.4rem; }
+    .blog-text-col p { color: #3a2e28; }
+
+    /* ===== TESTIMONIALS ===== */
+    .testimonials-layout {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      min-height: 500px;
+    }
+    .t-left {
+      background: #f5eee6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 48px;
+    }
+    .t-right {
+      background: #e5ddd4;
+      padding: 60px 56px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .testimonial { padding: 22px 0; }
+    .testimonial p.quote { font-size: 0.95rem; line-height: 1.85; color: #3a2e28; margin-bottom: 10px; }
+    .testimonial p.author {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.35rem;
+      color: #3a2e28;
+    }
+    .t-hr { border: none; border-top: 1px solid rgba(58,46,40,0.18); }
+
+    /* ===== FAQs ===== */
+    .faq-layout {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      min-height: 580px;
+    }
+    .faq-left {
+      background: #f5eee6;
+      padding: 60px 40px 0;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .faq-left .display { margin-bottom: 32px; }
+    .faq-pets { display: flex; gap: 0; align-items: flex-end; flex: 1; }
+    .faq-pets img { width: 50%; object-fit: contain; }
+
+    .faq-right {
+      background: #a8b49a;
+      padding: 60px 56px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .faq-item { padding: 22px 0; }
+    .faq-item h3 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: #fff;
+      margin-bottom: 10px;
+      line-height: 1.35;
+    }
+    .faq-item p { font-size: 0.88rem; line-height: 1.85; color: rgba(255,255,255,0.92); }
+    .faq-item p a { color: #fff; text-decoration: underline; }
+    .faq-hr { border: none; border-top: 1px solid rgba(255,255,255,0.3); }
+
+    /* ===== LET'S CONNECT ===== */
+    .connect-wrap { text-align: center; }
+    .connect-wrap .display { margin-bottom: 18px; }
+    .connect-rule {
+      border: none;
+      border-top: 1px solid rgba(58,46,40,0.22);
+      max-width: 480px;
+      margin: 0 auto 40px;
+    }
+    .connect-pets {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      margin-bottom: 52px;
+    }
+    .connect-pets img { height: 170px; width: auto; object-fit: contain; }
+
+    .connect-cols {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      text-align: left;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .connect-col h4 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      margin-bottom: 6px;
+      color: #3a2e28;
+    }
+    .connect-col p, .connect-col a { font-size: 0.88rem; color: #3a2e28; }
+    .connect-col a:hover { text-decoration: underline; }
+
+    .social-row { display: flex; gap: 10px; margin-top: 6px; }
+    .social-btn {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: #8a9e82;
+      color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .social-btn:hover { background: #6e8468; transform: translateY(-2px); }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: #f5eee6;
+      border-top: 1px solid rgba(58,46,40,0.1);
+      padding: 22px 40px;
+    }
+    .footer-inner {
+      max-width: 1140px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+    .footer-nav { display: flex; gap: 28px; flex-wrap: wrap; }
+    .footer-nav a {
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #5a4a44;
+      transition: color 0.2s;
+      cursor: pointer;
+    }
+    .footer-nav a:hover { color: #3a2e28; }
+    .footer-social { display: flex; gap: 8px; }
+    .footer-social .social-btn { width: 32px; height: 32px; background: rgba(58,46,40,0.18); }
+    .footer-social .social-btn:hover { background: rgba(58,46,40,0.35); transform: none; }
+
+    /* ===== NEWSLETTER MODAL ===== */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(58,46,40,0.45);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-box {
+      background: #f5eee6;
+      border-radius: 14px;
+      padding: 48px 44px 40px;
+      max-width: 440px;
+      width: 90%;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 20px 60px rgba(58,46,40,0.2);
+    }
+    .modal-close {
+      position: absolute;
+      top: 14px; right: 18px;
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      color: #7a6258;
+      cursor: pointer;
+      line-height: 1;
+    }
+    .modal-box h3 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 2rem;
+      font-weight: 400;
+      color: #3a2e28;
+      margin-bottom: 8px;
+    }
+    .modal-box p {
+      font-size: 0.88rem;
+      color: #7a6258;
+      margin-bottom: 24px;
+      line-height: 1.7;
+    }
+    .modal-input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid rgba(58,46,40,0.25);
+      border-radius: 50px;
+      background: #fff;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.9rem;
+      color: #3a2e28;
+      outline: none;
+      margin-bottom: 12px;
+      transition: border-color 0.2s;
+    }
+    .modal-input:focus { border-color: #8a9e82; }
+    .modal-submit {
+      width: 100%;
+      padding: 12px;
+      background: #8a9e82;
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.88rem;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .modal-submit:hover { background: #728670; }
+    .modal-success { display: none; }
+    .modal-success h3 { color: #8a9e82; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .blog-layout,
+      .testimonials-layout,
+      .faq-layout { grid-template-columns: 1fr; }
+      .blog-text-col { padding: 48px 32px; }
+      .t-left, .t-right { padding: 48px 32px; }
+      .faq-left { padding: 48px 32px 0; }
+      .faq-right { padding: 48px 32px; }
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
+      .connect-cols { grid-template-columns: 1fr; text-align: center; }
+      .social-row { justify-content: center; }
+      .mission-vision { grid-template-columns: 1fr; }
+      .mv-divider { height: 1px; }
+    }
+    @media (max-width: 640px) {
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: #faf5ee; padding: 20px 32px; gap: 18px; border-bottom: 1px solid rgba(58,46,40,0.1); }
+      .nav-links.open { display: flex; }
+      .nav-toggle { display: flex; }
+      .sec-inner, .sec-inner-sm { padding: 60px 24px; }
+      .products-grid { grid-template-columns: 1fr; max-width: 300px; margin: 0 auto; }
+      .connect-pets img { height: 110px; }
+      .footer { padding: 20px 24px; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <span class="nav-logo" onclick="showPage('home')">🐾 Radiant Pet Memorial</span>
+      <button class="nav-toggle" id="navToggle"><span></span><span></span><span></span></button>
+      <ul class="nav-links" id="navLinks">
+        <li><a onclick="showPage('home')" data-page="home" class="active">Home</a></li>
+        <li><a onclick="showPage('about')" data-page="about">About</a></li>
+        <li><a onclick="showPage('products')" data-page="products">Products</a></li>
+        <li><a onclick="showPage('blog')" data-page="blog">Blog</a></li>
+        <li><a onclick="showPage('contact')" data-page="contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="site">
+
+    <!-- ========== HOME ========== -->
+    <div class="page-section active" id="page-home">
+
+      <section class="hero">
+        <img src="images/hero.png" alt="Honor Their Memory with Love – Radiant Pet Memorial" />
+      </section>
+
+      <section class="sec-tan">
+        <div class="sec-inner-sm">
+          <div class="welcome-text">
+            <h2 class="display">Welcome!</h2>
+            <p>Losing a pet isn't just losing an animal. It's losing a family member, a daily companion, a source of unconditional love. If you're here, you're likely navigating that tender, heavy space of grief. We see you. We understand.</p>
+            <p>At Radiant Pet Memorial, we design digital pet memorial resources that offer comfort, structure, and a gentle path through loss. Each kit is created to help you honor your pet's unique spirit, process your emotions, and keep their memory glowing bright.</p>
+          </div>
+          <div class="mission-vision">
+            <div class="mv-col">
+              <h3>Our mission</h3>
+              <p>To offer gentle, meaningful pet memorial resources designed to support grieving pet parents through remembrance, reflection, and healing — at their own pace.</p>
+            </div>
+            <div class="mv-divider"></div>
+            <div class="mv-col">
+              <h3>Our vision</h3>
+              <p>A world where love, remembrance, and healing coexist — even after loss.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="sec-white">
+        <div class="sec-inner">
+          <h2 class="heading center">Our Products</h2>
+          <div class="products-intro">
+            <p>Whether you need a quiet ritual, a place to pour out your memories, or words of encouragement for the difficult days, we're here to walk alongside you. Take a deep breath. Explore at your own pace. You're exactly where you need to be 🐾</p>
+          </div>
+          <div class="products-grid">
+            <div class="product-card">
+              <img src="images/product-journal.png" alt="Pet Grief Journal" />
+              <p class="product-label">Memorial journal pages</p>
+            </div>
+            <div class="product-card">
+              <img src="images/product-candle-kit.png" alt="Pet Candle Ritual Kit" />
+              <p class="product-label">Gentle grounding rituals</p>
+            </div>
+            <div class="product-card">
+              <img src="images/product-affirmation.png" alt="Pet Loss Affirmation Cards" />
+              <p class="product-label">Reflection and remembrance prompts</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="blog-layout">
+        <div class="blog-img-col sec-tan">
+          <img src="images/blog-candle.png" alt="Candle with flower" />
+        </div>
+        <div class="blog-text-col sec-tan">
+          <h2 class="display">Blog</h2>
+          <p>Losing a pet is losing daily love, companionship, and a piece of your heart. This blog offers gentle support, memorial ideas, and a simple truth: your grief is valid, and your love is forever. Take what you need. You're not alone. 🙌🐾</p>
+          <a onclick="showPage('blog')" class="btn-outline-dark">Explore our articles</a>
+        </div>
+      </div>
+
+      <div class="testimonials-layout">
+        <div class="t-left">
+          <h2 class="display muted">Customer<br />testimonials</h2>
+        </div>
+        <div class="t-right">
+          <div class="testimonial">
+            <p class="quote">"This kit gave me a quiet moment to breathe and remember my dog with love."</p>
+            <p class="author">Early customer</p>
+          </div>
+          <hr class="t-hr" />
+          <div class="testimonial">
+            <p class="quote">"I didn't realize how much I needed a gentle space like this."</p>
+            <p class="author">Pet parent</p>
+          </div>
+          <hr class="t-hr" />
+          <div class="testimonial">
+            <p class="quote">"I found these products to be even more helpful than I expected."</p>
+            <p class="author">Early customer</p>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end #page-home -->
+
+
+    <!-- ========== ABOUT ========== -->
+    <div class="page-section" id="page-about">
+
+      <div class="about-hero">
+        <h1>About Us</h1>
+        <p>Compassion for grieving pet parents</p>
+      </div>
+
+      <section class="sec-tan">
+        <div class="sec-inner-sm">
+          <div class="welcome-text">
+            <h2 class="display">Welcome!</h2>
+            <p>Losing a pet isn't just losing an animal. It's losing a family member, a daily companion, a source of unconditional love. If you're here, you're likely navigating that tender, heavy space of grief. We see you. We understand.</p>
+            <p>At Radiant Pet Memorial, we design digital pet memorial resources that offer comfort, structure, and a gentle path through loss. Each kit is created to help you honor your pet's unique spirit, process your emotions, and keep their memory glowing bright.</p>
+          </div>
+          <div class="mission-vision">
+            <div class="mv-col">
+              <h3>Our mission</h3>
+              <p>To offer gentle, meaningful pet memorial resources designed to support grieving pet parents through remembrance, reflection, and healing — at their own pace.</p>
+            </div>
+            <div class="mv-divider"></div>
+            <div class="mv-col">
+              <h3>Our vision</h3>
+              <p>A world where love, remembrance, and healing coexist — even after loss.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="testimonials-layout">
+        <div class="t-left">
+          <h2 class="display muted">Customer<br />testimonials</h2>
+        </div>
+        <div class="t-right">
+          <div class="testimonial">
+            <p class="quote">"This kit gave me a quiet moment to breathe and remember my dog with love."</p>
+            <p class="author">Early customer</p>
+          </div>
+          <hr class="t-hr" />
+          <div class="testimonial">
+            <p class="quote">"I didn't realize how much I needed a gentle space like this."</p>
+            <p class="author">Pet parent</p>
+          </div>
+          <hr class="t-hr" />
+          <div class="testimonial">
+            <p class="quote">"I found these products to be even more helpful than I expected."</p>
+            <p class="author">Early customer</p>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end #page-about -->
+
+
+    <!-- ========== PRODUCTS ========== -->
+    <div class="page-section" id="page-products">
+
+      <section class="sec-white">
+        <div class="sec-inner">
+          <h2 class="heading center">Our Products</h2>
+          <div class="products-intro">
+            <p>Whether you need a quiet ritual, a place to pour out your memories, or words of encouragement for the difficult days, we're here to walk alongside you. Take a deep breath. Explore at your own pace. You're exactly where you need to be 🐾</p>
+          </div>
+          <div class="products-grid">
+            <div class="product-card">
+              <img src="images/product-journal.png" alt="Pet Grief Journal – Printable Workbook" />
+              <p class="product-label">Memorial journal pages</p>
+            </div>
+            <div class="product-card">
+              <img src="images/product-candle-kit.png" alt="Pet Candle Ritual Kit" />
+              <p class="product-label">Gentle grounding rituals</p>
+            </div>
+            <div class="product-card">
+              <img src="images/product-affirmation.png" alt="Pet Loss Affirmation Cards – Printable Deck" />
+              <p class="product-label">Reflection and remembrance prompts</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div><!-- end #page-products -->
+
+
+    <!-- ========== BLOG ========== -->
+    <div class="page-section" id="page-blog">
+
+      <div class="blog-layout">
+        <div class="blog-img-col sec-tan">
+          <img src="images/blog-candle.png" alt="Candle with flower" />
+        </div>
+        <div class="blog-text-col sec-tan">
+          <h2 class="display">Blog</h2>
+          <p>Losing a pet is losing daily love, companionship, and a piece of your heart. This blog offers gentle support, memorial ideas, and a simple truth: your grief is valid, and your love is forever. Take what you need. You're not alone. 🙌🐾</p>
+          <a href="#blog-articles" class="btn-outline-dark">Explore our articles</a>
+        </div>
+      </div>
+
+      <section class="sec-cream" id="blog-articles">
+        <div class="sec-inner">
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:36px;">
+
+            <article style="background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 4px 20px rgba(58,46,40,0.08);">
+              <div style="background:#d4c0a0;height:200px;display:flex;align-items:center;justify-content:center;font-size:3.5rem;">🕯️</div>
+              <div style="padding:24px;">
+                <span style="font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:#8a9e82;font-weight:500;">Grief &amp; Healing</span>
+                <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:400;margin:10px 0 8px;line-height:1.3;">Finding Peace After Pet Loss: A Gentle Guide</h3>
+                <p style="font-size:0.88rem;color:#5a4a44;line-height:1.8;">Losing a pet can feel overwhelming. Here are five gentle practices to help you move through grief with compassion for yourself...</p>
+                <a href="#" style="display:inline-block;margin-top:14px;font-size:0.85rem;color:#8a9e82;font-weight:500;">Read more →</a>
+              </div>
+            </article>
+
+            <article style="background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 4px 20px rgba(58,46,40,0.08);">
+              <div style="background:#f5d8d3;height:200px;display:flex;align-items:center;justify-content:center;font-size:3.5rem;">📖</div>
+              <div style="padding:24px;">
+                <span style="font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:#8a9e82;font-weight:500;">Journaling</span>
+                <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:400;margin:10px 0 8px;line-height:1.3;">How Journaling Helped Me Honour My Cat's Memory</h3>
+                <p style="font-size:0.88rem;color:#5a4a44;line-height:1.8;">Writing down memories is one of the most healing things you can do. Here's how to start your pet memorial journal even when it feels hard...</p>
+                <a href="#" style="display:inline-block;margin-top:14px;font-size:0.85rem;color:#8a9e82;font-weight:500;">Read more →</a>
+              </div>
+            </article>
+
+            <article style="background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 4px 20px rgba(58,46,40,0.08);">
+              <div style="background:#e6f0e2;height:200px;display:flex;align-items:center;justify-content:center;font-size:3.5rem;">🌿</div>
+              <div style="padding:24px;">
+                <span style="font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:#8a9e82;font-weight:500;">Memory Keeping</span>
+                <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:400;margin:10px 0 8px;line-height:1.3;">Creating a Memory Corner for Your Beloved Pet</h3>
+                <p style="font-size:0.88rem;color:#5a4a44;line-height:1.8;">A dedicated memory space in your home can be a beautiful tribute. Learn how to create one that feels personal and comforting...</p>
+                <a href="#" style="display:inline-block;margin-top:14px;font-size:0.85rem;color:#8a9e82;font-weight:500;">Read more →</a>
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </section>
+
+    </div><!-- end #page-blog -->
+
+
+    <!-- ========== CONTACT ========== -->
+    <div class="page-section" id="page-contact">
+
+      <div class="faq-layout">
+        <div class="faq-left">
+          <h2 class="display">FAQs</h2>
+          <div class="faq-pets">
+            <img src="images/faq-dog.png" alt="Dog" />
+            <img src="images/faq-cat.png" alt="Cat" />
+          </div>
+        </div>
+        <div class="faq-right">
+          <div class="faq-item">
+            <h3>When will I receive my products?</h3>
+            <p>Your worksheets will be available for instant download immediately after your payment is processed.</p>
+          </div>
+          <hr class="faq-hr" />
+          <div class="faq-item">
+            <h3>How do I download my worksheets?</h3>
+            <p>Once your purchase is complete, the "Add to Cart" button will be replaced by a "Download Now" button, which you can click to download your items. You can also navigate to your Etsy profile, click "recent purchases," select this worksheet bundle, and you will see the option to download your worksheets.</p>
+          </div>
+          <hr class="faq-hr" />
+          <div class="faq-item">
+            <h3>What should I do if I need help with my order or have questions about this product?</h3>
+            <p>Send me a message on Etsy @ <a href="mailto:radiantpetmemorial@etsy.com">radiantpetmemorial@etsy.com</a> — I'm happy to answer any questions you have!</p>
+            <button onclick="openNewsletter()" class="btn-newsletter">Subscribe to our newsletter</button>
+          </div>
+        </div>
+      </div>
+
+      <section class="sec-tan" id="connect-section">
+        <div class="sec-inner">
+          <div class="connect-wrap">
+            <h2 class="display">Let's connect</h2>
+            <hr class="connect-rule" />
+            <div class="connect-pets">
+              <img src="images/connect-puppy.png" alt="Puppy" />
+              <img src="images/connect-fluffy-cat.png" alt="Fluffy cat" />
+              <img src="images/connect-yorkie.png" alt="Yorkie with bone" />
+              <img src="images/connect-kitten.png" alt="Kitten" />
+            </div>
+            <div class="connect-cols">
+              <div class="connect-col">
+                <h4>Phone</h4>
+                <p><a href="tel:+11234567890">(123) 456-7890</a></p>
+              </div>
+              <div class="connect-col">
+                <h4>Email</h4>
+                <p><a href="mailto:radiantpetmemorial@gmail.com">radiantpetmemorial@gmail.com</a></p>
+              </div>
+              <div class="connect-col">
+                <h4>Social media</h4>
+                <div class="social-row">
+                  <a href="https://www.instagram.com/radiantpetmemorial?igsh=MTEweGh0MDZ3ZXppZw==" target="_blank" rel="noopener" aria-label="Instagram" class="social-btn">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                  </a>
+                  <a href="https://pin.it/HvTOtUVkY" target="_blank" rel="noopener" aria-label="Pinterest" class="social-btn">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div><!-- end #page-contact -->
+
+
+    <!-- ========== FOOTER (shared) ========== -->
+    <footer class="footer">
+      <div class="footer-inner">
+        <nav class="footer-nav">
+          <a onclick="showPage('home')">Home</a>
+          <a onclick="showPage('about')">About</a>
+          <a onclick="showPage('products')">Products</a>
+          <a onclick="showPage('blog')">Blog</a>
+          <a onclick="showPage('contact')">Contact</a>
+        </nav>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/radiantpetmemorial?igsh=MTEweGh0MDZ3ZXppZw==" target="_blank" rel="noopener" aria-label="Instagram" class="social-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+          <a href="https://pin.it/HvTOtUVkY" target="_blank" rel="noopener" aria-label="Pinterest" class="social-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+  </div><!-- end .site -->
+
+  <!-- NEWSLETTER MODAL -->
+  <div class="modal-overlay" id="newsletterModal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeNewsletter()" aria-label="Close">&times;</button>
+
+      <!-- Form view -->
+      <div id="modalForm">
+        <h3>Stay connected</h3>
+        <p>Get gentle grief resources, memorial ideas, and new product updates delivered to your inbox.</p>
+        <!-- Replace YOUR_FORM_ID with your Formspree ID at formspree.io -->
+        <form id="newsletterForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" onsubmit="handleNewsletterSubmit(event)">
+          <input type="email" name="email" class="modal-input" placeholder="Your email address" required />
+          <button type="submit" class="modal-submit">Subscribe</button>
+        </form>
+      </div>
+
+      <!-- Success view -->
+      <div id="modalSuccess" class="modal-success">
+        <h3>You're subscribed! 🐾</h3>
+        <p>Thank you for joining the Radiant Pet Memorial community. We'll be in touch with love.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showPage(name) {
+      // Hide all sections
+      document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+      // Show target
+      document.getElementById('page-' + name).classList.add('active');
+      // Update nav active state
+      document.querySelectorAll('.nav-links a').forEach(a => {
+        a.classList.toggle('active', a.dataset.page === name);
+      });
+      // Close mobile nav
+      document.getElementById('navLinks').classList.remove('open');
+      // Scroll to top
+      window.scrollTo(0, 0);
+    }
+
+    function openNewsletter() {
+      document.getElementById('newsletterModal').classList.add('open');
+      document.getElementById('modalForm').style.display = 'block';
+      document.getElementById('modalSuccess').style.display = 'none';
+    }
+    function closeNewsletter() {
+      document.getElementById('newsletterModal').classList.remove('open');
+    }
+    // Close on overlay click
+    document.getElementById('newsletterModal').addEventListener('click', function(e) {
+      if (e.target === this) closeNewsletter();
+    });
+    async function handleNewsletterSubmit(e) {
+      e.preventDefault();
+      const form = e.target;
+      const formId = form.action.split('/').pop();
+      if (formId === 'YOUR_FORM_ID') {
+        // No Formspree ID yet — just show success for demo
+        document.getElementById('modalForm').style.display = 'none';
+        document.getElementById('modalSuccess').style.display = 'block';
+        return;
+      }
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' }
+        });
+        if (res.ok) {
+          document.getElementById('modalForm').style.display = 'none';
+          document.getElementById('modalSuccess').style.display = 'block';
+        }
+      } catch {
+        document.getElementById('modalForm').style.display = 'none';
+        document.getElementById('modalSuccess').style.display = 'block';
+      }
+    }
+
+    // Mobile nav toggle
+    const navToggle = document.getElementById('navToggle');
+    const navLinks  = document.getElementById('navLinks');
+    if (navToggle) {
+      navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+    }
+
+    // Sticky nav shadow
+    window.addEventListener('scroll', () => {
+      document.querySelector('.navbar').style.boxShadow =
+        window.scrollY > 10 ? '0 2px 16px rgba(58,46,40,0.1)' : 'none';
+    });
+  </script>
+
+</body>
+</html>
